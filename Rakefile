@@ -1,3 +1,9 @@
+require "hoe"
+
+Hoe.spec 'subdomain_locale' do
+  developer 'Semyon Perepelitsa', 'sema@sema.in'
+end
+
 require "rake/testtask"
 Rake::TestTask.new do |t|
   t.libs << "test"
