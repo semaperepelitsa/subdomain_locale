@@ -15,6 +15,11 @@ class UrlForTest < MiniTest::Unit::TestCase
     assert_equal [{foo: 'bar'}], @actual
   end
 
+  def test_does_not_affect_string_argument
+    url_for('/bar')
+    assert_equal ['/bar'], @actual
+  end
+
   def test_replaces_locale_with_subdomain_and_forces_not_only_path
     url_for(foo: 'bar', locale: :ru)
     assert_equal [{foo: 'bar', subdomain: 'ru', only_path: false}], @actual
