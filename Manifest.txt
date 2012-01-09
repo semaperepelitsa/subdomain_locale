@@ -2,6 +2,7 @@ Rakefile
 lib/subdomain_locale.rb
 lib/subdomain_locale/controller.rb
 lib/subdomain_locale/locale.rb
+lib/subdomain_locale/railtie.rb
 lib/subdomain_locale/url_for.rb
 test/controller_test.rb
 test/i18n_stub.rb
