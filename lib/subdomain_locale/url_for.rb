@@ -10,7 +10,9 @@ module SubdomainLocale
     # After including this module:
     #   url_for params.merge(locale: 'ru') # => http://ru.example.com/current_path
     def url_for(options=nil)
-      if options.is_a?(Hash) and locale = options.delete(:locale)
+      if options.is_a?(Hash) and options.has_key?(:locale)
+        options = options.dup
+        locale = options.delete(:locale)
         options[:subdomain] = Locale.new(locale).subdomain
         options[:only_path] = false
       end

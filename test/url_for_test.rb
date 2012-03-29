@@ -36,4 +36,11 @@ class UrlForTest < MiniTest::Unit::TestCase
     @actual = url_for(foo: 'bar', locale: :az)
     assert_equal [{foo: 'bar', subdomain: 'www', only_path: false}], @actual
   end
+
+  def test_original_options_not_modified
+    orig_params = { foo: 'bar', locale: :ru }
+    params = orig_params.dup
+    url_for(params)
+    assert_equal orig_params, params
+  end
 end
