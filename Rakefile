@@ -2,6 +2,7 @@ require "hoe"
 
 Hoe.spec 'subdomain_locale' do
   developer 'Semyon Perepelitsa', 'sema@sema.in'
+  self.urls = %w(https://github.com/semaperepelitsa/subdomain_locale)
 end
 
 require "rake/testtask"
