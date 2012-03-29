@@ -1,11 +1,12 @@
 Rakefile
+Readme.md
 lib/subdomain_locale.rb
 lib/subdomain_locale/controller.rb
 lib/subdomain_locale/locale.rb
 lib/subdomain_locale/railtie.rb
 lib/subdomain_locale/url_for.rb
+lib/subdomain_locale/version.rb
 test/controller_test.rb
-test/i18n_stub.rb
+test/lib/i18n.rb
 test/locale_test.rb
-test/test_helper.rb
 test/url_for_test.rb
