@@ -1,3 +1,5 @@
+require "i18n"
+
 module SubdomainLocale
   class Locale
     class << self

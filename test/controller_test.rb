@@ -1,4 +1,6 @@
-require "test_helper"
+require "minitest/autorun"
+$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
+require "subdomain_locale/controller"
 
 class ControllerTest < MiniTest::Unit::TestCase
   class Controller

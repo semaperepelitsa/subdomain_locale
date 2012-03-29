@@ -1,4 +1,6 @@
-require "test_helper"
+require "minitest/autorun"
+$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
+require "subdomain_locale/locale"
 
 class LocaleTest < MiniTest::Unit::TestCase
   include SubdomainLocale

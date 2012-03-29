@@ -1,3 +1,5 @@
+require "subdomain_locale/locale"
+
 module SubdomainLocale
   module UrlFor
     def url_for(options=nil)

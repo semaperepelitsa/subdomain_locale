@@ -1,3 +1,5 @@
+require "subdomain_locale/locale"
+
 module SubdomainLocale
   module Controller
     def self.included(base)

@@ -1,3 +1,6 @@
+require "subdomain_locale/url_for"
+require "subdomain_locale/controller"
+
 module SubdomainLocale
   class Railtie < ::Rails::Railtie
 
