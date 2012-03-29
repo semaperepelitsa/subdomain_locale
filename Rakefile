@@ -1,3 +1,4 @@
+gem "hoe", "~> 3.0"
 require "hoe"
 
 Hoe.spec 'subdomain_locale' do
