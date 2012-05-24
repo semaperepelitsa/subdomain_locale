@@ -3,7 +3,7 @@
 Moves current locale into subdomain. Installation is quick and simple:
 
     # Gemfile
-    gem 'subdomain_locale', '~> 0.0.3'
+    gem 'subdomain_locale', '~> 0.1.0'
 
     # config/application.rb
     config.i18n.available_locales = [:ru, :az, :en] # Put your own available locales
