@@ -2,12 +2,14 @@
 
 Moves current locale into subdomain. Installation is quick and simple:
 
-    # Gemfile
-    gem 'subdomain_locale', '~> 0.1.0'
+```ruby
+# Gemfile
+gem 'subdomain_locale', '~> 0.1.0'
 
-    # config/application.rb
-    config.i18n.available_locales = [:ru, :az, :en, "en-US"] # Put your own available locales
-    config.i18n.default_locale = :az                         # and make one default
+# config/application.rb
+config.i18n.available_locales = [:ru, :az, :en, "en-US"] # Put your own available locales
+config.i18n.default_locale = :az                         # and make one default
+```
 
 Now, start your web server at localhost:3000 and navigate:
 
@@ -18,9 +20,11 @@ Now, start your web server at localhost:3000 and navigate:
 
 You can also put links to all locales in your view:
 
-    <% I18n.available_locales.each do |locale| %>
-      <%= link_to locale, params.merge(locale: locale) %>
-    <% end %>
+```erb
+<% I18n.available_locales.each do |locale| %>
+  <%= link_to locale, params.merge(locale: locale) %>
+<% end %>
+```
 
 ## Configuring own subdomain-to-locale mapping
 
