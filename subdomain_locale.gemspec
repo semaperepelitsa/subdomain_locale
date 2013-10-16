@@ -18,13 +18,13 @@ Gem::Specification.new do |spec|
                         Readme.md
                         lib/subdomain_locale.rb
                         lib/subdomain_locale/controller.rb
-                        lib/subdomain_locale/locale.rb
+                        lib/subdomain_locale/mapping.rb
                         lib/subdomain_locale/railtie.rb
                         lib/subdomain_locale/url_for.rb
                         lib/subdomain_locale/version.rb
                         test/controller_test.rb
                         test/lib/i18n.rb
-                        test/locale_test.rb
+                        test/mapping_test.rb
                         test/url_for_test.rb
                       )
   spec.executables   = []
@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "minitest", "~> 5.0.8"
 
   spec.add_dependency "i18n", "~> 0.2"
 end
