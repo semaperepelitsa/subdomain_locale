@@ -38,6 +38,14 @@ config.subdomain_locales["us"] = "en-US"
 
 Having that configured `http://us.lvh.me:3000` will be rendered with :en-US locale.
 
+## Development setup
+
+```
+bundle
+rake appraisal:install
+rake appraisal test
+```
+
 
 ## Changelog
 

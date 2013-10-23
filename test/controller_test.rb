@@ -4,7 +4,7 @@ require "lib/i18n"
 require "subdomain_locale"
 require "subdomain_locale/controller"
 
-class ControllerTest < Minitest::Test
+class ControllerTest < MiniTest::Unit::TestCase
   class Controller
     class Request
       def subdomain
@@ -42,7 +42,7 @@ class ControllerTest < Minitest::Test
   end
 
   def test_sets_locale
-    mapping = Minitest::Mock.new
+    mapping = MiniTest::Mock.new
     mapping.expect(:locale_for, :ru, ["ru"])
     SubdomainLocale.mapping = mapping
     Controller.new.run

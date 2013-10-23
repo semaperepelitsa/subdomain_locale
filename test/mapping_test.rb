@@ -2,7 +2,7 @@ require "bundler/setup"
 require "minitest/autorun"
 require "subdomain_locale/mapping"
 
-class MappingTest < Minitest::Test
+class MappingTest < MiniTest::Unit::TestCase
   include SubdomainLocale
 
   def subject

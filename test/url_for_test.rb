@@ -3,7 +3,7 @@ require "minitest/autorun"
 require "subdomain_locale"
 require "subdomain_locale/url_for"
 
-class UrlForTest < Minitest::Test
+class UrlForTest < MiniTest::Unit::TestCase
   module UrlFor
     def url_for(*args)
       args
