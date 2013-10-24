@@ -1,0 +1,4 @@
+source "https://rubygems.org"
+
+gem "rails", ENV["RAILS_VERSION"] || "~> 4.0.0"
+gem "subdomain_locale", path: "../.."

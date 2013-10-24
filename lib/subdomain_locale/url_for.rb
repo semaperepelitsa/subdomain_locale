@@ -1,5 +1,3 @@
-require "subdomain_locale/locale"
-
 module SubdomainLocale
   module UrlFor
     # Makes url_for(locale: 'ru') the same as url_for(subdomain: 'ru', only_path: false)
@@ -13,7 +11,7 @@ module SubdomainLocale
       if options.is_a?(Hash) and options.has_key?(:locale)
         options = options.dup
         locale = options.delete(:locale)
-        options[:subdomain] = Locale.new(locale).subdomain
+        options[:subdomain] = SubdomainLocale.mapping.subdomain_for(locale)
         options[:only_path] = false
       end
 

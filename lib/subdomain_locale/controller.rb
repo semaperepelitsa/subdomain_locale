@@ -1,5 +1,3 @@
-require "subdomain_locale/locale"
-
 module SubdomainLocale
   module Controller
     def self.included(base)
@@ -9,7 +7,7 @@ module SubdomainLocale
     private
 
     def set_locale
-      Locale.set(request.subdomain)
+      I18n.locale = SubdomainLocale.mapping.locale_for(request.subdomain)
     end
   end
 end

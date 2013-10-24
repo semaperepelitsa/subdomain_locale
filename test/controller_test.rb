@@ -1,5 +1,7 @@
+require "bundler/setup"
 require "minitest/autorun"
-$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
+require "lib/i18n"
+require "subdomain_locale"
 require "subdomain_locale/controller"
 
 class ControllerTest < MiniTest::Unit::TestCase
@@ -30,9 +32,21 @@ class ControllerTest < MiniTest::Unit::TestCase
     include SubdomainLocale::Controller
   end
 
+  def setup
+    I18n.locale = nil
+  end
+
+  def teardown
+    SubdomainLocale.mapping = nil
+    I18n.locale = nil
+  end
+
   def test_sets_locale
-    assert_nil I18n.locale
+    mapping = MiniTest::Mock.new
+    mapping.expect(:locale_for, :ru, ["ru"])
+    SubdomainLocale.mapping = mapping
     Controller.new.run
     assert_equal :ru, I18n.locale
+    mapping.verify
   end
 end
