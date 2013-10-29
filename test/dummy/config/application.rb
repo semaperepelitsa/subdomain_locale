@@ -1,10 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require "action_controller/railtie"
-
-if defined?(Bundler)
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
-end
+require "subdomain_locale/railtie"
 
 module Dummy
   class Application < Rails::Application
@@ -12,7 +9,5 @@ module Dummy
     config.i18n.available_locales = :en, :ru, :uk
 
     config.subdomain_locales["ua"] = :uk
-
-    config.encoding = "utf-8"
   end
 end
