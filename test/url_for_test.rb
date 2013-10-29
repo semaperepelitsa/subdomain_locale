@@ -13,15 +13,7 @@ class UrlForTest < MiniTest::Unit::TestCase
   include UrlFor
   include SubdomainLocale::UrlFor
 
-  def setup
-    SubdomainLocale.mapping = mapping
-  end
-
-  def teardown
-    SubdomainLocale.mapping = nil
-  end
-
-  def mapping
+  def subdomain_locales
     @mapping ||= Object.new.tap do |mapping|
       def mapping.subdomain_for(locale)
         "ru" if locale == :ru

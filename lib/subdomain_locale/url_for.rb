@@ -11,11 +11,15 @@ module SubdomainLocale
       if options.is_a?(Hash) and options.has_key?(:locale)
         options = options.dup
         locale = options.delete(:locale)
-        options[:subdomain] = SubdomainLocale.mapping.subdomain_for(locale)
+        options[:subdomain] = subdomain_locales.subdomain_for(locale)
         options[:only_path] = false
       end
 
       super
+    end
+
+    def subdomain_locales
+      SubdomainLocale.mapping
     end
   end
 end
