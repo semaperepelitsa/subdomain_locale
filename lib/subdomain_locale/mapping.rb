@@ -1,4 +1,8 @@
 module SubdomainLocale
+  class << self
+    attr_accessor :mapping
+  end
+
   class Mapping
     def initialize(mapping)
       @repository = {}
