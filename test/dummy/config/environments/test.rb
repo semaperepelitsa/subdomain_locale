@@ -8,4 +8,5 @@ Dummy::Application.configure do
   config.action_controller.allow_forgery_protection    = false
   config.active_support.deprecation = :stderr
   config.eager_load = false
+  config.secret_key_base = "-"
 end

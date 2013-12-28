@@ -26,8 +26,8 @@ module SubdomainLocale
 
     def self.default_mapping
       I18n.available_locales.each_with_object({}) do |locale, memo|
-        memo[locale] = locale
-      end.merge("www" => I18n.default_locale)
+        memo[locale.to_s] = locale
+      end.merge("" => I18n.default_locale, "www" => I18n.default_locale)
     end
 
   end

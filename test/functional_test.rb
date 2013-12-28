@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] = "test"
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+require "minitest/autorun"
 require "rails/test_help"
 Rails.backtrace_cleaner.remove_silencers!
 
@@ -37,10 +38,9 @@ class HelloControllerTest < ActionController::TestCase
   end
 
   def test_other
-    skip "Should fall back to default?"
     @request.host = "wtf.example.com"
-    get :world
-    assert_response :ok
-    assert_select "p", "Hello"
+    assert_raises KeyError do
+      get :world
+    end
   end
 end

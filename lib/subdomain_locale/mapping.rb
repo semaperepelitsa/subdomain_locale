@@ -12,12 +12,12 @@ module SubdomainLocale
     end
 
     def locale_for(subdomain)
-      @repository[subdomain]
+      @repository.fetch(subdomain)
     end
 
     def subdomain_for(locale)
       return unless locale.respond_to?(:to_sym)
-      @repository.invert[locale.to_sym]
+      @repository.invert.fetch(locale.to_sym)
     end
   end
 end

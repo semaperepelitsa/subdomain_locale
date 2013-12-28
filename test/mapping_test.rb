@@ -14,11 +14,15 @@ class MappingTest < MiniTest::Unit::TestCase
   end
 
   def test_locale_for_not_existed_subdomain
-    assert_nil subject.locale_for("en")
+    assert_raises KeyError do
+      subject.locale_for("en")
+    end
   end
 
   def test_locale_for_nil
-    assert_nil subject.locale_for(nil)
+    assert_raises KeyError do
+      subject.locale_for(nil)
+    end
   end
 
   def test_locale_for_with_string_mapping
@@ -40,7 +44,9 @@ class MappingTest < MiniTest::Unit::TestCase
   end
 
   def test_subdomain_for_not_existed_locale
-    assert_nil subject.subdomain_for(:en)
+    assert_raises KeyError do
+      subject.subdomain_for(:en)
+    end
   end
 
   def test_subdomain_for_nil
