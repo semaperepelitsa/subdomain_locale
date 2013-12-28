@@ -1,5 +1,6 @@
+require "bundler/setup"
 require "minitest/autorun"
-$LOAD_PATH.unshift File.expand_path("../lib", __FILE__)
+require "subdomain_locale"
 require "subdomain_locale/url_for"
 
 class UrlForTest < MiniTest::Unit::TestCase
@@ -11,6 +12,14 @@ class UrlForTest < MiniTest::Unit::TestCase
 
   include UrlFor
   include SubdomainLocale::UrlFor
+
+  def subdomain_locales
+    @mapping ||= Object.new.tap do |mapping|
+      def mapping.subdomain_for(locale)
+        "ru" if locale == :ru
+      end
+    end
+  end
 
   def test_does_not_affect_if_there_is_no_locale
     @actual = url_for(foo: 'bar')
@@ -30,11 +39,6 @@ class UrlForTest < MiniTest::Unit::TestCase
   def test_replaces_locale_with_subdomain_and_overrides_only_path
     @actual = url_for(foo: 'bar', locale: :ru, only_path: true)
     assert_equal [{foo: 'bar', subdomain: 'ru', only_path: false}], @actual
-  end
-
-  def test_sets_subdomain_to_www_for_default_locale
-    @actual = url_for(foo: 'bar', locale: :az)
-    assert_equal [{foo: 'bar', subdomain: 'www', only_path: false}], @actual
   end
 
   def test_original_options_not_modified
