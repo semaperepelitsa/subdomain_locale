@@ -21,29 +21,38 @@ class UrlForTest < MiniTest::Unit::TestCase
     end
   end
 
-  def test_does_not_affect_if_there_is_no_locale
+  def current_locale
+    :ru
+  end
+
+  def test_no_locale
     @actual = url_for(foo: 'bar')
     assert_equal [{foo: 'bar'}], @actual
   end
 
-  def test_does_not_affect_string_argument
+  def test_string_argument
     @actual = url_for('/bar')
     assert_equal ['/bar'], @actual
   end
 
-  def test_replaces_locale_with_subdomain_and_forces_not_only_path
+  def test_locale
     @actual = url_for(foo: 'bar', locale: :ru)
     assert_equal [{foo: 'bar', subdomain: 'ru', only_path: false}], @actual
   end
 
-  def test_replaces_locale_with_subdomain_and_overrides_only_path
+  def test_only_path
     @actual = url_for(foo: 'bar', locale: :ru, only_path: true)
     assert_equal [{foo: 'bar', subdomain: 'ru', only_path: false}], @actual
   end
 
-  def test_original_options_not_modified
+  def test_implicit_locale
+    @actual = url_for(foo: 'bar', only_path: false)
+    assert_equal [{foo: 'bar', subdomain: 'ru', only_path: false}], @actual
+  end
+
+  def test_hash_immutable
     orig_params = { foo: 'bar', locale: :ru }
-    params = orig_params.dup
+    params = orig_params.dup.freeze
     url_for(params)
     assert_equal orig_params, params
   end

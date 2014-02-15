@@ -8,4 +8,6 @@ Dummy::Application.configure do
   config.action_controller.allow_forgery_protection    = false
   config.active_support.deprecation = :stderr
   config.eager_load = false
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { host: "example.com" }
 end

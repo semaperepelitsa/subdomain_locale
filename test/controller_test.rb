@@ -1,6 +1,7 @@
 # encoding: UTF-8
 ENV["RAILS_ENV"] = "test"
 
+require "bundler/setup"
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require "rails/test_help"
 Rails.backtrace_cleaner.remove_silencers!
@@ -10,9 +11,10 @@ class HelloControllerTest < ActionController::TestCase
     @request.host = "example.com"
     get :world
     menu = css_select("menu a")
-    assert_equal "http://www.example.com/", menu[0]["href"]
-    assert_equal "http://ru.example.com/",  menu[1]["href"]
-    assert_equal "http://ua.example.com/",  menu[2]["href"]
+    assert_equal "/", menu[0]["href"]
+    assert_equal "http://www.example.com/", menu[1]["href"]
+    assert_equal "http://ru.example.com/",  menu[2]["href"]
+    assert_equal "http://ua.example.com/",  menu[3]["href"]
   end
 
   def test_default
