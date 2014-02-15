@@ -41,9 +41,8 @@ Having that configured `http://us.lvh.me:3000` will be rendered with :en-US loca
 ## Development setup
 
 ```
-bundle
-rake appraisal:install
-rake appraisal test
+gem install isolate
+rake test:all
 ```
 
 
