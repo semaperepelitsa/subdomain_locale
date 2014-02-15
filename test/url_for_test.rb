@@ -1,4 +1,4 @@
-require "bundler/setup"
+require "isolate/now"
 require "minitest/autorun"
 require "subdomain_locale"
 require "subdomain_locale/url_for"
