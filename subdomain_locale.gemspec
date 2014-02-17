@@ -1,11 +1,8 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'subdomain_locale/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "subdomain_locale"
-  spec.version       = SubdomainLocale::VERSION
+  spec.version       = "0.1.1"
   spec.authors       = ["Semyon Perepelitsa"]
   spec.email         = ["sema@sema.in"]
   spec.description   = "Moves current locale into subdomain in your Rails app"
