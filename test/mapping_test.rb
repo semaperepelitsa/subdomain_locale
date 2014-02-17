@@ -5,50 +5,21 @@ require "subdomain_locale/mapping"
 class MappingTest < MiniTest::Unit::TestCase
   include SubdomainLocale
 
-  def subject
-    Mapping.new("ru" => :ru)
+  def setup
+    @mapping = Mapping.new("ua" => :uk)
   end
 
-  def test_locale_for_existed_subdomain
-    assert_equal :ru, subject.locale_for("ru")
+  def test_custom
+    assert_equal "uk", @mapping.locale_for("ua")
+    assert_equal "ua", @mapping.subdomain_for(:uk)
   end
 
-  def test_locale_for_not_existed_subdomain
-    assert_nil subject.locale_for("en")
+  def test_default
+    assert_equal "ru", @mapping.locale_for("ru")
+    assert_equal "ru", @mapping.subdomain_for(:ru)
   end
 
-  def test_locale_for_nil
-    assert_nil subject.locale_for(nil)
-  end
-
-  def test_locale_for_with_string_mapping
-    subject = Mapping.new("ru" => "ru")
-    assert_equal :ru, subject.locale_for("ru")
-  end
-
-  def test_locale_for_compound_locale
-    subject = Mapping.new("en-US" => :"en-US")
-    assert_equal :"en-US", subject.locale_for("en-us")
-  end
-
-  def test_subdomain_for_existed_locale
-    assert_equal "ru", subject.subdomain_for(:ru)
-  end
-
-  def test_subdomain_for_existed_string_locale
-    assert_equal "ru", subject.subdomain_for("ru")
-  end
-
-  def test_subdomain_for_not_existed_locale
-    assert_nil subject.subdomain_for(:en)
-  end
-
-  def test_subdomain_for_nil
-    assert_nil subject.subdomain_for(nil)
-  end
-
-  def test_subdomain_for_compound_locale
-    subject = Mapping.new("en-US" => "en-US")
-    assert_equal "en-us", subject.subdomain_for(:"en-US")
+  def test_nil
+    assert_nil @mapping.subdomain_for(nil)
   end
 end

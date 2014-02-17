@@ -7,17 +7,16 @@ module SubdomainLocale
     def initialize(mapping)
       @repository = {}
       mapping.each do |subdomain, locale|
-        @repository[subdomain.to_s.downcase] = locale.to_sym
+        @repository[subdomain] = locale.to_s
       end
     end
 
     def locale_for(subdomain)
-      @repository[subdomain]
+      @repository[subdomain] || subdomain
     end
 
     def subdomain_for(locale)
-      return unless locale.respond_to?(:to_sym)
-      @repository.invert[locale.to_sym]
+      locale and @repository.invert[locale.to_s] || locale.to_s
     end
   end
 end
