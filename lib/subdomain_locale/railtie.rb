@@ -6,7 +6,8 @@ module SubdomainLocale
 
     config.after_initialize do |app|
       require "subdomain_locale/mapping"
-      mapping = { "www" => I18n.default_locale }.merge(app.config.subdomain_locale)
+      default = { "" => I18n.default_locale, "www" => I18n.default_locale }
+      mapping = default.merge(app.config.subdomain_locale)
       SubdomainLocale.mapping = Mapping.new(mapping)
     end
 

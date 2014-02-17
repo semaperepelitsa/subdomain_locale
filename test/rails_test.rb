@@ -40,11 +40,10 @@ class HelloControllerTest < ActionController::TestCase
   end
 
   def test_other
-    skip "Should fall back to default?"
     @request.host = "wtf.example.com"
-    get :world
-    assert_response :ok
-    assert_select "p", "Hello"
+    assert_raise(I18n::InvalidLocale) do
+      get :world
+    end
   end
 end
 
