@@ -14,6 +14,7 @@ test/dummy/app/mailers/hello_mailer.rb
 test/dummy/app/views/hello/world.html.erb
 test/dummy/app/views/hello_mailer/world.text.erb
 test/dummy/app/views/layouts/application.html.erb
+test/dummy/config.ru
 test/dummy/config/application.rb
 test/dummy/config/environment.rb
 test/dummy/config/environments/test.rb
