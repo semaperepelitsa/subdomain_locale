@@ -1,13 +1,14 @@
 module SubdomainLocale
   module Controller
     def self.included(base)
-      base.before_filter :set_locale
+      base.around_filter :set_locale
     end
 
     private
 
     def set_locale
-      I18n.locale = SubdomainLocale.mapping.locale_for(request.subdomain)
+      locale = SubdomainLocale.mapping.locale_for(request.subdomain)
+      I18n.with_locale(locale) { yield }
     end
   end
 end
