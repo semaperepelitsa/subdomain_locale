@@ -1,11 +1,5 @@
 # encoding: UTF-8
-ENV["RAILS_ENV"] = "test"
-
-require "isolate/now"
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-require "minitest/autorun"
-require "rails/test_help"
-Rails.backtrace_cleaner.remove_silencers!
+require_relative "test_helper"
 
 class HelloControllerTest < ActionController::TestCase
   def test_links

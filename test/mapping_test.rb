@@ -1,7 +1,4 @@
-require "isolate/now"
-require "minitest/autorun"
-require "subdomain_locale/mapping"
-require "active_support/core_ext"
+require_relative "test_helper"
 
 class MappingTest < MiniTest::Unit::TestCase
   include SubdomainLocale
