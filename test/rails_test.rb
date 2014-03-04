@@ -3,7 +3,7 @@ require_relative "test_helper"
 
 class HelloControllerTest < ActionController::TestCase
   def test_links
-    @request.host = "example.com"
+    @request.host = "ru.example.com"
     get :world
     menu = css_select("menu a")
     assert_equal "/", menu[0]["href"]

@@ -21,11 +21,13 @@ class MappingTest < MiniTest::Unit::TestCase
     # request.subdomain returns "" for test.host
     assert_equal "en", @mapping.locale_for("")
 
-    # "" results in .test.host, nil produces correct test.host
-    assert_equal nil, @mapping.subdomain_for(:en)
+    # url_for(subdomain: "") => ".test.host"
+    # url_for(subdomain: nil) => "test.host" in Rails 4, "current.test.host" in Rails 3
+    # url_for(subdomain: false) => "test.host"
+    assert_equal false, @mapping.subdomain_for(:en)
   end
 
   def test_nil
-    assert_nil @mapping.subdomain_for(nil)
+    assert_equal false, @mapping.subdomain_for(nil)
   end
 end
