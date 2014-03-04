@@ -23,4 +23,5 @@ test/dummy/config/locales/uk.yml
 test/dummy/config/routes.rb
 test/mapping_test.rb
 test/rails_test.rb
+test/test_helper.rb
 test/url_for_test.rb
