@@ -10,12 +10,12 @@ module SubdomainLocale
     def url_for(options=nil)
       if options.is_a?(Hash)
         options = options.dup
-        if options.has_key?(:locale)
+        if options.key?(:locale)
           # Locale specified, force full URL
           locale = options.delete(:locale)
           options[:subdomain] = subdomain_locales.subdomain_for(locale)
           options[:only_path] = false
-        elsif options.has_key?(:only_path) && !options[:only_path]
+        elsif options.key?(:only_path) && !options[:only_path] && !options.key?(:subdomain)
           # Requested full URL, use current locale
           options[:subdomain] = subdomain_locales.subdomain_for(current_locale)
         end

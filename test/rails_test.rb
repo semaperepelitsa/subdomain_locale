@@ -10,6 +10,7 @@ class HelloControllerTest < ActionController::TestCase
     assert_equal "http://example.com/", menu[1]["href"]
     assert_equal "http://ru.example.com/",  menu[2]["href"]
     assert_equal "http://ua.example.com/",  menu[3]["href"]
+    assert_equal "http://beta.example.com/",  menu[4]["href"]
   end
 
   def test_default
