@@ -3,6 +3,14 @@ module SubdomainLocale
     attr_accessor :mapping
   end
 
+  def self.default_fallback(locale)
+    if I18n.locale_available?(locale)
+      locale
+    else
+      I18n.default_locale
+    end
+  end
+
   class Mapping
     def initialize(mapping)
       @repository = {}

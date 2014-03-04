@@ -41,9 +41,8 @@ class HelloControllerTest < ActionController::TestCase
 
   def test_other
     @request.host = "wtf.example.com"
-    assert_raise(I18n::InvalidLocale) do
-      get :world
-    end
+    get :world
+    assert_select "p", "Hello"
   end
 end
 

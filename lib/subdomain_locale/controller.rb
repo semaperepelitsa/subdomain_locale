@@ -8,6 +8,7 @@ module SubdomainLocale
 
     def set_locale
       locale = SubdomainLocale.mapping.locale_for(request.subdomain)
+      locale = SubdomainLocale.default_fallback(locale)
       I18n.with_locale(locale) { yield }
     end
   end
