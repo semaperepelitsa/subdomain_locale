@@ -1,13 +1,13 @@
 module SubdomainLocale
   class << self
-    attr_accessor :mapping
+    attr_accessor :mapping, :default_locale
   end
 
   def self.default_fallback(locale)
     if I18n.locale_available?(locale)
       locale
     else
-      I18n.default_locale
+      default_locale
     end
   end
 

@@ -7,8 +7,8 @@ class HelloControllerTest < ActionController::TestCase
     get :world
     menu = css_select("menu a")
     assert_equal "/", menu[0]["href"]
-    assert_equal "http://example.com/", menu[1]["href"]
-    assert_equal "http://ru.example.com/",  menu[2]["href"]
+    assert_equal "http://en.example.com/", menu[1]["href"]
+    assert_equal "http://example.com/",  menu[2]["href"]
     assert_equal "http://ua.example.com/",  menu[3]["href"]
     assert_equal "http://beta.example.com/",  menu[4]["href"]
   end
@@ -17,14 +17,14 @@ class HelloControllerTest < ActionController::TestCase
     @request.host = "example.com"
     get :world
     assert_response :ok
-    assert_select "p", "Hello"
+    assert_select "p", "Привет"
   end
 
   def test_direct
-    @request.host = "ru.example.com"
+    @request.host = "en.example.com"
     get :world
     assert_response :ok
-    assert_select "p", "Привет"
+    assert_select "p", "Hello"
   end
 
   def test_custom
@@ -43,13 +43,13 @@ class HelloControllerTest < ActionController::TestCase
   def test_other
     @request.host = "wtf.example.com"
     get :world
-    assert_select "p", "Hello"
+    assert_select "p", "Привет"
   end
 end
 
 class HelloMailerTest < ActionController::TestCase
   def test
-    mail = I18n.with_locale(:ru) { HelloMailer.world }
-    assert_equal "http://ru.example.com/", mail.body.to_s.lines[3].chomp
+    mail = I18n.with_locale(:uk) { HelloMailer.world }
+    assert_equal "http://ua.example.com/", mail.body.to_s.lines[3].chomp
   end
 end

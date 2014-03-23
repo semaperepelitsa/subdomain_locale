@@ -3,12 +3,15 @@ require "rails/railtie"
 module SubdomainLocale
   class Railtie < ::Rails::Railtie
     config.subdomain_locale = {}
-    config.subdomain_default = "" # or "www"
+    config.default_subdomain = "" # or "www"
+    config.default_locale = nil
 
     # Execute after all application initializers, I18n is often configured there.
     config.after_initialize do |app|
       require "subdomain_locale/mapping"
-      default = { app.config.subdomain_default => I18n.default_locale }
+      SubdomainLocale.default_locale = app.config.default_locale || I18n.default_locale
+
+      default = { app.config.default_subdomain => SubdomainLocale.default_locale }
       mapping = default.merge(app.config.subdomain_locale)
       SubdomainLocale.mapping = Mapping.new(mapping)
     end
