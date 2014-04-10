@@ -2,10 +2,10 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "subdomain_locale"
-  spec.version       = "1.0.beta6"
+  spec.version       = "1.0.0"
   spec.authors       = ["Semyon Perepelitsa"]
   spec.email         = ["sema@sema.in"]
-  spec.summary       = "Set I18n locale based on subdomain"
+  spec.summary       = "Set I18n locale based on subdomain (Rails plugin)."
   spec.homepage      = "https://github.com/semaperepelitsa/subdomain_locale"
   spec.license       = "MIT"
 

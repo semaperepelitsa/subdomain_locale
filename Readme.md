@@ -1,57 +1,96 @@
 # Subdomain Locale (for Rails)
 
-Moves current locale into subdomain. Installation is quick and simple:
+A multi-language website requires some way to detect a user's locale.
+Subdomain is one option.
+
+## Setup
+
+Add the gem to your Gemfile. Set a default subdomain.
 
 ```ruby
-# Gemfile
-gem 'subdomain_locale', '~> 0.1.0'
-
 # config/application.rb
-config.i18n.available_locales = [:ru, :az, :en, "en-US"] # Put your own available locales
-config.i18n.default_locale = :az                         # and make one default
+
+# I18n library now recommends you to enforce available locales.
+config.i18n.enforce_available_locales = true
+config.i18n.available_locales = :en, :ru
+
+# See "Configuration" for difference between these:
+config.default_locale = :ru
+config.i18n.default_locale = :en
 ```
 
-Now, start your web server at localhost:3000 and navigate:
+Subdomains will now determine the current locale:
 
-    http://lvh.me:3000/ - the default locale (:az)
-    http://ru.lvh.me:3000/ - I18n.locale is set to :ru
-    http://en-us.lvh.me:3000/ - I18n.locale is set to :en-US
-    http://www.lvh.me:3000/ - again, default
+* Selected locale (:en) http://en.example.com/
+* Default locale (:ru) http://example.com/
 
-You can also put links to all locales in your view:
+Add links to the new subdomains using :locale URL parameter:
 
 ```erb
-<% I18n.available_locales.each do |locale| %>
+<% [:ru, :en].each do |locale| %>
   <%= link_to locale, params.merge(locale: locale) %>
 <% end %>
 ```
 
-## Configuring own subdomain-to-locale mapping
+## Configuration
+
+You can hook a special subdomain name with a locale:
 
 ```ruby
-# config/application.rb
-
-config.subdomain_locales["us"] = "en-US"
-# or even
-# config.subdomain_locales = {"us" => "en-US", "ca" => "en-CA"}
+config.subdomain_locale["us"] = :"en-US" # us.lvh.me
+config.subdomain_locale["ca"] = :"en-CA" # ca.lvh.me
+config.subdomain_locale["ua"] = :uk      # ua.lvh.me
 ```
 
-Having that configured `http://us.lvh.me:3000` will be rendered with :en-US locale.
+Default locale will link to the default subdomain (main domain by default: lvh.me).
+If you prefer "www" use this config option:
 
-## Development setup
+```ruby
+config.default_subdomain = "www"
+```
+
+English developers prefer to see English in console and other places.
+This is why we have a separate default locale for the website:
+
+```ruby
+config.default_locale = :ru
+config.i18n.default_locale = :en
+```
+
+For example, with this config example.com will be in Russian,
+while validation errors in console are still in English.
+
+
+You can also override our controller method to completely ignore subdomain locale.
+For example, if you want admin panel to always be in English:
+
+```ruby
+class AdminController
+  # This is alrady an around_filter
+  def set_locale(&block)
+    I18n.with_locale(:en, &block)
+  end
+end
+```
+
+## Testing
+
+This gem is tested against Rails 3.2 and 4.0.
 
 ```
 gem install isolate
 rake test:all
 ```
 
-
 ## Changelog
 
-master
+1.0.0
 
-* Support IETF language tag subdomains, e.g. pt-br.
-* Allow to create custom mappings, e.g. "us" instead of "en-us".
+* Now compatible with the new I18n.enforce\_available\_locales.
+* No subdomain is now deafult instead of "www". Can be reverted by setting config.default\_domain.
+* Separate website's default locale (config.default\_locale) from the global default locale (config.i18n.default\_locale).
+* Test gem in the whole Rails stack (3.2, 4.0).
+* Add config.subdomain_locale for indirect mapping ("us" => :"en-US").
 
 0.1.1
 
