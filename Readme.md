@@ -86,6 +86,7 @@ rake test:all
 
 1.0.0
 
+* Links outside controllers now also point to the current locale. For example, in mailers.
 * Now compatible with the new I18n.enforce\_available\_locales.
 * No subdomain is now deafult instead of "www". Can be reverted by setting config.default\_domain.
 * Separate website's default locale (config.default\_locale) from the global default locale (config.i18n.default\_locale).
