@@ -27,23 +27,8 @@ class UrlForTest < MiniTest::Unit::TestCase
     assert_equal [{foo: 'bar'}], @actual
   end
 
-  def test_string_argument
-    @actual = url_for('/bar')
-    assert_equal ['/bar'], @actual
-  end
-
   def test_locale
     @actual = url_for(foo: 'bar', locale: :ru)
-    assert_equal [{foo: 'bar', subdomain: 'ru', only_path: false}], @actual
-  end
-
-  def test_only_path
-    @actual = url_for(foo: 'bar', locale: :ru, only_path: true)
-    assert_equal [{foo: 'bar', subdomain: 'ru', only_path: false}], @actual
-  end
-
-  def test_implicit_locale
-    @actual = url_for(foo: 'bar', only_path: false)
     assert_equal [{foo: 'bar', subdomain: 'ru', only_path: false}], @actual
   end
 

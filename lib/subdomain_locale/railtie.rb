@@ -18,7 +18,7 @@ module SubdomainLocale
 
     initializer "subdomain_locale.url_helpers" do
       require "subdomain_locale/url_for"
-      Rails.application.routes.url_helpers.send :include, SubdomainLocale::UrlFor
+      Rails.application.routes.extend SubdomainLocale::UrlFor
     end
 
     initializer "subdomain_locale.controller" do

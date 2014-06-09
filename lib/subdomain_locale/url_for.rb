@@ -7,21 +7,22 @@ module SubdomainLocale
     #   url_for params.merge(locale: 'ru') # => /ru/current_path
     # After including this module:
     #   url_for params.merge(locale: 'ru') # => http://ru.example.com/current_path
-    def url_for(options=nil)
-      if options.is_a?(Hash)
-        options = options.dup
-        if options.key?(:locale)
-          # Locale specified, force full URL
-          locale = options.delete(:locale)
-          options[:subdomain] = subdomain_locales.subdomain_for(locale)
-          options[:only_path] = false
-        elsif options.key?(:only_path) && !options[:only_path] && !options.key?(:subdomain)
-          # Requested full URL, use current locale
-          options[:subdomain] = subdomain_locales.subdomain_for(current_locale)
-        end
+    def url_for(options)
+      options = options.dup
+      if options.key?(:locale)
+        # Locale specified, force full URL
+        locale = options.delete(:locale)
+        options[:subdomain] = subdomain_locales.subdomain_for(locale)
+        options[:only_path] = false
       end
 
       super
+    end
+
+    def default_url_options
+      super.merge({
+        subdomain: subdomain_locales.subdomain_for(current_locale)
+      })
     end
 
     def current_locale
