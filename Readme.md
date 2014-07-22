@@ -84,6 +84,10 @@ rake test:all
 
 ## Changelog
 
+1.1.0 - unreleased
+
+* Custom subdomain provided in default_url_options now has precedence over subdomain-locale.
+
 1.0.0
 
 * Links outside controllers now also point to the current locale. For example, in mailers.
