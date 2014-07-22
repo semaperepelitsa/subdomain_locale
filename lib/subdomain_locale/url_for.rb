@@ -12,8 +12,10 @@ module SubdomainLocale
       if options.key?(:locale)
         # Locale specified, force full URL
         locale = options.delete(:locale)
-        options[:subdomain] = subdomain_locales.subdomain_for(locale)
+        options[:subdomain] = options[:subdomain].subdomain_for(locale)
         options[:only_path] = false
+      else
+        options[:subdomain] = options[:subdomain].subdomain_for(current_locale)
       end
 
       super
@@ -21,16 +23,12 @@ module SubdomainLocale
 
     def default_url_options
       super.merge({
-        subdomain: subdomain_locales.subdomain_for(current_locale)
+        subdomain: request.env['subdomain_locale']
       })
     end
 
     def current_locale
       I18n.locale
-    end
-
-    def subdomain_locales
-      SubdomainLocale.mapping
     end
   end
 end
