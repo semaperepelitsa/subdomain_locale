@@ -48,8 +48,14 @@ class HelloControllerTest < ActionController::TestCase
 end
 
 class HelloMailerTest < ActionController::TestCase
-  def test
+  def test_locale_domain
     mail = I18n.with_locale(:uk) { HelloMailer.world }
     assert_equal "http://ua.example.com/", mail.body.to_s.lines[3].chomp
+  end
+
+  # BetaMailer overrides default_url_options
+  def test_custom_domain
+    mail = I18n.with_locale(:uk) { BetaMailer.world }
+    assert_equal "http://beta.example.com/", mail.body.to_s.lines[3].chomp
   end
 end
