@@ -75,7 +75,7 @@ end
 
 ## Testing
 
-This gem is tested against Rails 3.2 and 4.0.
+This gem is tested against Rails 3.2, 4.0 and 4.1.
 
 ```
 gem install isolate

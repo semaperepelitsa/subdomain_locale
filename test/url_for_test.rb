@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class UrlForTest < MiniTest::Unit::TestCase
+class UrlForTest < ActiveSupport::TestCase
   module UrlFor
     def url_for(*args)
       args

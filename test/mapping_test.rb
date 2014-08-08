@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class MappingTest < MiniTest::Unit::TestCase
+class MappingTest < ActiveSupport::TestCase
   include SubdomainLocale
 
   def setup
