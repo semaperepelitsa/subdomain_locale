@@ -1,2 +1,2 @@
-class HelloController < ApplicationController
+class HelloController < ActionController::Base
 end
