@@ -84,9 +84,9 @@ rake test:all
 
 ## Changelog
 
-1.1.0 - unreleased
+1.1.0
 
-* Custom subdomain provided in default_url_options now has precedence over subdomain-locale.
+* Custom subdomain provided in your default_url_options now has precedence over the default subdomain-locale.
 
 1.0.0
 

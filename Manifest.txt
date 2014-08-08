@@ -8,12 +8,11 @@ lib/subdomain_locale/mapping.rb
 lib/subdomain_locale/railtie.rb
 lib/subdomain_locale/url_for.rb
 subdomain_locale.gemspec
-test/dummy/app/controllers/application_controller.rb
 test/dummy/app/controllers/hello_controller.rb
+test/dummy/app/mailers/beta_mailer.rb
 test/dummy/app/mailers/hello_mailer.rb
 test/dummy/app/views/hello/world.html.erb
 test/dummy/app/views/hello_mailer/world.text.erb
-test/dummy/app/views/layouts/application.html.erb
 test/dummy/config.ru
 test/dummy/config/application.rb
 test/dummy/config/environment.rb
