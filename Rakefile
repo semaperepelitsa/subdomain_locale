@@ -12,11 +12,11 @@ Rake::TestTask.new do |t|
 end
 
 task "test:all" do
-  sh "rake test"
+  sh($0, "test")
   puts
-  sh "rake test RAILS=4.0"
+  sh({"RAILS" => "4.0"}, $0, "test")
   puts
-  sh "rake test RAILS=3.2"
+  sh({"RAILS" => "3.2"}, $0, "test")
 end
 
 task :default => :test
