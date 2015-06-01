@@ -1,22 +1,23 @@
 options system: false, cleanup: false
 
 gem 'bundler', '~> 1.5.0'
-gem 'i18n', '~> 0.6.9'
+gem 'i18n', '~> 0.7.0'
+gem 'rack-test', '~> 0.6.2'
+gem 'mail', '~> 2.6.0'
 
 case ENV['RAILS']
-when '3.2'
-  version = '~> 3.2.16'
-  gem 'actionpack', version
-  gem 'actionmailer', version
-  gem 'railties', version
-  gem 'minitest', '~> 4.2'
 when '4.0'
   version = '~> 4.0.0'
   gem 'actionpack', version
   gem 'actionmailer', version
   gem 'railties', version
-when nil
+when '4.1'
   version = '~> 4.1.0'
+  gem 'actionpack', version
+  gem 'actionmailer', version
+  gem 'railties', version
+when '4.2', nil
+  version = '~> 4.2.0'
   gem 'actionpack', version
   gem 'actionmailer', version
   gem 'railties', version

@@ -84,6 +84,16 @@ rake test:all
 
 ## Changelog
 
+1.2.0
+
+* Support Rails 4.2 and I18n 0.7; drop Rails 3.2.
+* Note: Rails 4.2 is more strict about `_path/_url` helpers. Make sure to use `_url` helper whenever you specify locale parameter:
+
+  ```ruby
+  root_path(locale: :ru) # bad, will raise deprecation warning
+  root_url(locale: :ru)  # good
+  ```
+
 1.1.0
 
 * Custom subdomain provided in your default_url_options now has precedence over the default subdomain-locale.

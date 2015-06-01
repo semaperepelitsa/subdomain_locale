@@ -12,11 +12,11 @@ Rake::TestTask.new do |t|
 end
 
 task "test:all" do
-  sh($0, "test")
+  sh({"RAILS" => "4.2"}, $0, "test")
+  puts
+  sh({"RAILS" => "4.1"}, $0, "test")
   puts
   sh({"RAILS" => "4.0"}, $0, "test")
-  puts
-  sh({"RAILS" => "3.2"}, $0, "test")
 end
 
 task :default => :test

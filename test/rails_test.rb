@@ -6,7 +6,7 @@ class HelloControllerTest < ActionController::TestCase
     @request.host = "ru.example.com"
     get :world
     menu = css_select("menu a")
-    assert_equal "/", menu[0]["href"]
+    assert_equal "http://example.com/", menu[0]["href"]
     assert_equal "http://en.example.com/", menu[1]["href"]
     assert_equal "http://example.com/",  menu[2]["href"]
     assert_equal "http://ua.example.com/",  menu[3]["href"]
@@ -49,13 +49,13 @@ end
 
 class HelloMailerTest < ActionController::TestCase
   def test_locale_domain
-    mail = I18n.with_locale(:uk) { HelloMailer.world }
+    mail = HelloMailer.world(:uk)
     assert_equal "http://ua.example.com/", mail.body.to_s.lines[3].chomp
   end
 
   # BetaMailer overrides default_url_options
   def test_custom_domain
-    mail = I18n.with_locale(:uk) { BetaMailer.world }
+    mail = BetaMailer.world(:uk)
     assert_equal "http://beta.example.com/", mail.body.to_s.lines[3].chomp
   end
 end

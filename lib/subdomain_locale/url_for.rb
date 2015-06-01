@@ -7,7 +7,7 @@ module SubdomainLocale
     #   url_for params.merge(locale: 'ru') # => /ru/current_path
     # After including this module:
     #   url_for params.merge(locale: 'ru') # => http://ru.example.com/current_path
-    def url_for(options)
+    def url_for(options, *other)
       options = options.dup
       if options.key?(:locale)
         # Locale specified, force full URL
@@ -16,7 +16,7 @@ module SubdomainLocale
         options[:only_path] = false
       end
 
-      super
+      super(options, *other)
     end
 
     def default_url_options
@@ -24,6 +24,8 @@ module SubdomainLocale
         subdomain: subdomain_locales.subdomain_for(current_locale)
       })
     end
+
+    private
 
     def current_locale
       I18n.locale
