@@ -73,6 +73,26 @@ class AdminController
 end
 ```
 
+### `url_for` subdomain rewritting
+
+By default, `url_for` will generate links with subdomain of currently active
+locale which may differ from subdomain of current request if current subdomain
+is not included in locale mapping, or `url_for` is called inside
+`I18n.with_locale`. To disable this functionality, set:
+
+``` ruby
+config.current_locale_subdomain_in_url_for = false
+```
+
+This may be useful if your application has subdomains not mapped to locale. For
+example, if your admin panel has separate domain `admin.example.com` and you set
+English as single language in admin panel, `url_for` called inside admin
+controller or view will return links with `en.example.com` or `example.com`
+instead of `admin.example.com`. Using `redirect_to` with parameters hash or
+record will result in change of subdomain too. Set
+`current_locale_subdomain_in_url_for` to `false` to restore regular Rails
+behavior: using domain of current request in `url_for`.
+
 ## Testing
 
 This gem is tested against Rails 3.2, 4.0 and 4.1.
@@ -121,4 +141,3 @@ rake test:all
 * Clearly specifying I18n dependency.
 
 0.0.1—0.0.3. Initial releases.
-

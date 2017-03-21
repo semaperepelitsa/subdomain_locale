@@ -45,6 +45,10 @@ class HelloControllerTest < ActionController::TestCase
     get :world
     assert_select "p", "Привет"
   end
+
+  def test_url_for_subdomain_replacement_by_default
+    assert Rails.application.config.current_locale_subdomain_in_url_for
+  end
 end
 
 class HelloMailerTest < ActionController::TestCase
