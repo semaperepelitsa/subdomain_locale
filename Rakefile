@@ -1,5 +1,4 @@
 require "rake/testtask"
-require "isolate/now"
 require "bundler/gem_tasks"
 
 Rake::TestTask.new do |t|
