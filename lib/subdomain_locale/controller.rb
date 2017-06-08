@@ -1,7 +1,7 @@
 module SubdomainLocale
   module Controller
     def self.included(base)
-      base.around_filter :set_locale
+      base.around_action :set_locale
     end
 
     private
