@@ -5,7 +5,13 @@ Subdomain is one option.
 
 ## Setup
 
-Add the gem to your Gemfile. Set a default subdomain.
+Add the gem to your Gemfile:
+
+```ruby
+gem "subdomain_locale"
+```
+
+Set a default subdomain:
 
 ```ruby
 # config/application.rb
