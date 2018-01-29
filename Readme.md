@@ -72,7 +72,7 @@ For example, if you want admin panel to always be in English:
 
 ```ruby
 class AdminController
-  # This is alrady an around_filter
+  # This method is registered as "around_filter / around_action"
   def set_locale(&block)
     I18n.with_locale(:en, &block)
   end
@@ -81,7 +81,7 @@ end
 
 ## Testing
 
-This gem is tested against Rails 3.2, 4.0 and 4.1.
+This gem is tested against Rails 3.2, 4.0, 4.1, 4.2 and 5.0.
 
 ```
 gem install isolate
