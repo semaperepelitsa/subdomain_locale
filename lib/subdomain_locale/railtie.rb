@@ -5,6 +5,7 @@ module SubdomainLocale
     config.subdomain_locale = {}
     config.default_subdomain = "" # or "www"
     config.default_locale = nil
+    config.current_locale_subdomain_in_url_for = true
 
     # Execute after all application initializers, I18n is often configured there.
     config.after_initialize do |app|
@@ -19,6 +20,10 @@ module SubdomainLocale
     initializer "subdomain_locale.url_helpers" do
       require "subdomain_locale/url_for"
       Rails.application.routes.extend SubdomainLocale::UrlFor
+      if Rails.application.config.current_locale_subdomain_in_url_for
+        require "subdomain_locale/default_url_options"
+        Rails.application.routes.extend SubdomainLocale::DefaultUrlOptions
+      end
     end
 
     initializer "subdomain_locale.controller" do
