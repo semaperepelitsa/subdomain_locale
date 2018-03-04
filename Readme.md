@@ -72,7 +72,7 @@ For example, if you want admin panel to always be in English:
 
 ```ruby
 class AdminController
-  # This is alrady an around_filter
+  # This is already an around_action
   def set_locale(&block)
     I18n.with_locale(:en, &block)
   end
