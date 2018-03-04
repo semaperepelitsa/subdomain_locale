@@ -81,7 +81,7 @@ end
 
 ## Testing
 
-This gem is tested against Rails 3.2, 4.0 and 4.1.
+This gem is tested against Rails 5.0 and 5.1.
 
 ```
 gem install isolate
@@ -89,6 +89,11 @@ rake test:all
 ```
 
 ## Changelog
+
+
+1.3.0
+
+* Now testing against Rails 5.
 
 1.2.0
 
