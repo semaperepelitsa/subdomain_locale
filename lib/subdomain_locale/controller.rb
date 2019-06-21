@@ -1,15 +1,15 @@
 module SubdomainLocale
   module Controller
-    def self.included(base)
-      base.around_action :set_locale
+    class SetLocaleFilter
+      def self.around(controller)
+        locale = SubdomainLocale.mapping.locale_for(controller.request.subdomain)
+        locale = SubdomainLocale.default_fallback(locale)
+        I18n.with_locale(locale) { yield }
+      end
     end
 
-    private
-
-    def set_locale
-      locale = SubdomainLocale.mapping.locale_for(request.subdomain)
-      locale = SubdomainLocale.default_fallback(locale)
-      I18n.with_locale(locale) { yield }
+    def self.included(base)
+      base.around_action SetLocaleFilter
     end
   end
 end

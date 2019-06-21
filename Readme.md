@@ -90,6 +90,9 @@ rake test:all
 
 ## Changelog
 
+master
+
+* Support Rails 5.2 (fixed name collision of `set_locale` around action breaking Rails mailer previews).
 
 1.3.0
 
