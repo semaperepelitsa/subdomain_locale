@@ -6,13 +6,8 @@ gem 'rack-test', '~> 0.6.2'
 gem 'mail', '~> 2.6.0'
 
 case ENV['RAILS']
-when '5.0'
-  version = '~> 5.0.0'
-  gem 'actionpack', version
-  gem 'actionmailer', version
-  gem 'railties', version
-when '5.1'
-  version = '~> 5.1.0'
+when '5.0', '5.1', '5.2'
+  version = "~> #{ENV['RAILS']}.0"
   gem 'actionpack', version
   gem 'actionmailer', version
   gem 'railties', version
